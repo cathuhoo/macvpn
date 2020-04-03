@@ -1,7 +1,11 @@
 #!/bin/bash
 
-# Script is used to set the Nameserver Lookup under Max OS X 10.4 with the Console
-# Script by Stephan Oeste <stephan@oeste.de>
+# This script is used to set the nameservers for all interfaces of Mac OS
+$ Author: Haixin Duan
+
+#Usage: ./setalldns.sh  [IP_address_of_nameserver ]
+#If no argument is given, 127.0.0.1 will be used.
+
 
 nameserver=$1
 if [ "$nameserver"  == ""  ] ; then
@@ -9,7 +13,6 @@ if [ "$nameserver"  == ""  ] ; then
 fi
 
 timestamp=`date +%Y%m%d%H%M`
-
 tmp=/tmp/setall-dns-psid-$timestamp.tmp
 
 echo list ".*DNS" | scutil |grep "State:/Network/Service/"| awk '{print $4}' |cut -d'/' -f4> $tmp
